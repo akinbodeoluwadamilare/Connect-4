@@ -1,6 +1,5 @@
 package Controllers;
 
-import DataAccess.GameDataAccess;
 import DomainObjects.GameDomainObject;
 import DomainObjects.PlayerDomainObject;
 import Models.GameModel;
@@ -54,15 +53,8 @@ public class GameController {
 
     public DeleteGameResponse deleteGame(DeleteGameRequest request) {
         try {
-            if (GameDataAccess.GetGameByGameId(request.getGameId()) != null) {
-                // Game exists, delete it
-                GameDataAccess.DeleteGame(request.getGameId());
-                
+                GameModel.DeleteGame(request.getGameId());              
                 return new DeleteGameResponse(true, null);
-            } else {
-                // Game does not exist
-                return new DeleteGameResponse(false, "Invalid Game.");
-            }
         } catch (Exception ex) {
             return new DeleteGameResponse(false, ex.getMessage());
         }

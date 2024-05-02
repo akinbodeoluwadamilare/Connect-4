@@ -8,6 +8,6 @@ public class DeleteGameRequest {
     }
 
     public int getGameId() {
-        return gameId;
+        return this.gameId;
     }
 }

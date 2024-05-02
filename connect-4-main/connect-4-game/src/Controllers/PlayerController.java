@@ -2,7 +2,9 @@ package Controllers;
 
 import DomainObjects.PlayerDomainObject;
 import Models.PlayerModel;
+import restService.request.PlayerDetailsRequest;
 import restService.request.RegisterPlayerRequest;
+import restService.response.PlayerDetailsResponse;
 import restService.response.RegisterPlayerResponse;
 
 
@@ -22,4 +24,13 @@ public class PlayerController {
             return response;
         }
     }
+
+    public PlayerDetailsResponse getPlayerDetails(PlayerDetailsRequest request) {
+        try {
+            PlayerDomainObject playerToRetrieve = PlayerModel.GetPlayerById(request.getPlayerId());
+            return new PlayerDetailsResponse(playerToRetrieve);
+        } catch (Exception ex) {
+            return new PlayerDetailsResponse(ex.getMessage());
+    }
+}
 }

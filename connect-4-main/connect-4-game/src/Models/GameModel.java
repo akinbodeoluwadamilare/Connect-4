@@ -15,6 +15,13 @@ public class GameModel {
         return new GameDomainObject(gameToAdd);
     }
 
+    public static void DeleteGame(int gameId) throws Exception {
+        GameDataObject gameToDelete = GameDataAccess.GetGameByGameId(gameId);
+        if (gameToDelete == null) {
+            throw new Exception("Invalid GameId");
+        }
+        GameDataAccess.DeleteGame(gameId);
+    }
     public static GameDomainObject GetGameByGameId(int gameId) throws Exception {
         GameDataObject gameRetrieved = GameDataAccess.GetGameByGameId(gameId);
         if (gameRetrieved == null) {

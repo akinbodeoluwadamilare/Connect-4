@@ -28,15 +28,11 @@ public class GameDataAccess {
     }
 
     public static void DeleteGame(int gameId) {
-        GameDataObject gameToRemove = null;
         for (GameDataObject game : games) {
             if (game.gameId == gameId) {
-                gameToRemove = game;
+                games.remove(game);
                 break;
             }
-        }
-        if (gameToRemove != null) {
-            games.remove(gameToRemove);
         }
     }
 }
